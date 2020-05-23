@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+</head>
+<body>
+    <div id="app">
+        <!--插值文本-->
+        <h2 v-bind:title="title" :title="title">
+            {{title}}
+        </h2>
+        <!--列表渲染-->
+        <div v-for="c in courses" :key="c">
+            {{ c }}
+        </div>
+        <!--用户输入-->
+        <p>
+            <input type="text" v-model="course" v-on:keydown.enter="addCourse">
+            {{course}}
+            <button @click="addCourse">新增</button>
+        </p>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+
+        let app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    title: '购物车',
+                    course: '',
+                    courses: ['web全栈', 'web高级']
+                }
+            },
+            methods: {
+                addCourse() {
+                    this.courses.push(this.course);
+                    this.course = '';
+                }
+            },
+        })
+
+    </script>
+</body>
+</html>

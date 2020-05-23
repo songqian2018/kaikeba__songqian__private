@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车render</title>
+    <style>
+        .active {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../vue.js"></script>
+    <script>
+
+        let app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    title: '购物车',
+                    course: '',
+                    courses: ['大数据', '人工智能'],
+                    selectedCourse: null
+                }
+            },
+            methods: {
+                addCourse() {
+                    this.courses.push(this.course);
+                    this.course = '';
+                }
+            },
+            render () {
+                with(this){
+                    return _c('div',{attrs:{"id":"app"}},[_c('h2',{attrs: {"title":title}},[_v("\n "+_s(title)+"\n ")]),_v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value: (course),expression:"course"}],attrs:{"type":"text"},domProps:{"value": (course)},on:{"keydown":function($event) {if(!$event.type.indexOf('key')&&_k($event.keyCode,"enter",13,$event.key,"Enter" ))return null;return addCourse($event)},"input":function($event) {if($event.target.composing)return;course=$event.target.value}}}),_v(" "),_c('button',{on:{"click":addCourse}},[_v("新增课程")]),_v(" "),(courses.length == 0)?_c('p',[_v("没有任何课程信息")]):_e(),_v(" "),_c('ul',_l((courses),function(c){return _c('li',{class:{active: (selectedCourse === c)},on:{"click":function($event){selectedCourse = c}}}, [_v(_s(c))])}),0)])
+                }
+            }
+        })
+
+        console.log(app.$options.render);
+
+    </script>
+</body>
+</html>
