@@ -82,6 +82,13 @@ class Compiler {
                 // 执行响应更新函数
                 this[dir] && this[dir](node, exp);
             }
+            // 事件处理
+            if (this.isEvent(attrName)) {
+                // @click = "onClick"
+                const dir = attrName.substring(1); // click
+                // exp 是 onClick
+                this.eventHandler(node, exp, dir);
+            }
         })
     }
 
@@ -89,7 +96,40 @@ class Compiler {
         return attr.indexOf('k-') == 0;
     }
 
+    isEvent(attr) {
+        return attr.indexOf('@') == 0;
+    }
+
     text(node, exp) {
         this.update(node, exp, 'text')
+    }
+
+    html(node, exp) {
+        this.update(node, exp, 'html')
+    }
+
+    htmlUpdater(node, value) {
+        node.innerHTML = value;
+    }
+
+    model(node, exp) {
+        // 赋值
+        this.update(node, exp, 'model')
+
+        // 事件监听
+        node.addEventListener('input', e => {
+            this.$vm[exp] = e.target.value;
+        })
+    }
+
+    modelUpdater(node, value) {
+        node.value = value
+    }
+
+    eventHandler(node, exp, dir) {
+        const fn = this.$vm.$options.methods && this.$vm.$options.methods[exp]
+        if (fn) {
+            node.addEventListener(dir, fn.bind(this.$vm))
+        }
     }
 }
