@@ -2,7 +2,7 @@
   <div class="app-wrapper">
     <!-- 导航 -->
     <side-menu></side-menu>
-    <!-- <sidebar class="sidebar-container" /> -->
+    <sidebar class="sidebar-container" />
     <div class="main-container">
       <router-view />
     </div>
@@ -12,10 +12,12 @@
 <script>
 
   import SideMenu from '@/components/SideMenu'
+  import Sidebar from '@/components/Sidebar'
 
   export default {
     components: {
-      SideMenu
+      SideMenu,
+      Sidebar
     }
   }
 </script>
