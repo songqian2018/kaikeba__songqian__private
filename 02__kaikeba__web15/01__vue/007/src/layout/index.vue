@@ -4,6 +4,8 @@
     <side-menu></side-menu>
     <sidebar class="sidebar-container" />
     <div class="main-container">
+      <bread-low></bread-low>
+      <breadcrumb></breadcrumb>
       <router-view />
     </div>
   </div>
@@ -13,11 +15,15 @@
 
   import SideMenu from '@/components/SideMenu'
   import Sidebar from '@/components/Sidebar'
+  import BreadLow from '@/components/BreadLow'
+  import Breadcrumb from '@/components/Breadcrumb'
 
   export default {
     components: {
       SideMenu,
-      Sidebar
+      Sidebar,
+      BreadLow,
+      Breadcrumb
     }
   }
 </script>

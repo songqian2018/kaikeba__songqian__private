@@ -5,6 +5,7 @@ import store from './store'
 import './icons/index'
 import './permission'
 import vPermission from "./directive/permission"
+import './plugins/element.js'
 
 Vue.directive("permission", vPermission)
 
